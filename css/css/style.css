@@ -1,0 +1,324 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+}
+
+body {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* 手机外边框 */
+.phone-frame {
+    width: 360px;
+    height: 700px;
+    background-color: #222;
+    border-radius: 40px;
+    padding: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3),
+                inset 0 0 0 4px #333,
+                inset 0 0 0 8px #555;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 手机屏幕 */
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5f5;
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 状态栏 */
+.status-bar {
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* 时间日期小组件 */
+.widget-container {
+    background-color: white;
+    margin: 15px;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.widget-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    z-index: 1;
+}
+
+.widget-content {
+    position: relative;
+    z-index: 2;
+}
+
+.date-display {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.time-display {
+    font-size: 36px;
+    font-weight: 700;
+    color: #222;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* 主屏幕应用网格 - 修改为4列 */
+.app-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.app-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 18px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-height: 90px;
+}
+
+.app-icon:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.app-icon i {
+    font-size: 32px;
+    margin-bottom: 8px;
+    transition: transform 0.3s ease;
+}
+
+.app-icon:hover i {
+    transform: scale(1.1);
+}
+
+.app-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    line-height: 1.2;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 4px;
+}
+
+/* 应用页面 */
+.app-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5f5;
+    padding-top: 25px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.app-page.active {
+    transform: translateX(0);
+}
+
+.app-header {
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #4a6cf7;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.back-button:hover {
+    background-color: rgba(74, 108, 247, 0.1);
+}
+
+.page-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.action-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #ff6b6b;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-button:hover {
+    background-color: rgba(255, 107, 107, 0.1);
+}
+
+/* 聊天底部导航栏 */
+.chat-tab-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid #eee;
+}
+
+.chat-tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    cursor: pointer;
+    flex: 1;
+    transition: all 0.2s;
+}
+
+.chat-tab-item.active {
+    color: #07C160;
+}
+
+.chat-tab-item i {
+    font-size: 22px;
+    margin-bottom: 4px;
+}
+
+.chat-tab-item span {
+    font-size: 12px;
+}
+
+.chat-tab-item:hover {
+    transform: translateY(-2px);
+}
+
+/* 底部指示器 */
+.home-indicator {
+    width: 120px;
+    height: 5px;
+    background-color: #ddd;
+    border-radius: 3px;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+/* 通知 */
+.notification {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 14px;
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.notification.active {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* 响应式调整 */
+@media (max-height: 750px) {
+    .modal-content {
+        max-height: 75%;
+    }
+    .app-icon {
+        min-height: 80px;
+        padding: 8px;
+    }
+}
+
+/* 应用图标颜色配置在theme.css中 */
