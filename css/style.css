@@ -376,3 +376,35 @@ a, button, .app-icon, .back-button, .action-button {
         background-color: rgba(255, 255, 255, 0.95);
     }
 }
+/* 主屏幕应用网格 - 调整为5个应用 */
+.app-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* 确保应用图标大小合适 */
+.app-icon {
+    min-height: 100px;
+    padding: 12px;
+}
+
+/* 聊天页面样式优化 */
+.chat-tab-bar {
+    height: 50px;
+    background-color: white;
+    border-top: 1px solid #eee;
+}
+
+/* 钱包页面优化 */
+.wallet-balance {
+    padding: 20px;
+}
+
+.balance-amount {
+    font-size: 36px;
+}
