@@ -8,6 +8,16 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/modal.css">
     <link rel="stylesheet" href="css/theme.css">
+    <style>
+        /* 加载时的过渡效果 */
+        .phone-screen {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .phone-screen.loaded {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
     <!-- 手机外框 -->
@@ -36,12 +46,14 @@
             <!-- 主屏幕应用网格 -->
             <div class="app-grid" id="app-grid">
                 <!-- 应用图标通过JS动态生成 -->
+                <div style="text-align: center; padding: 20px; color: #999;">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>加载中...</p>
+                </div>
             </div>
             
             <!-- 应用页面容器 -->
-            <div id="app-pages-container">
-                <!-- 应用页面通过JS动态生成 -->
-            </div>
+            <div id="app-pages-container"></div>
             
             <!-- 底部指示器 -->
             <div class="home-indicator"></div>
@@ -49,23 +61,41 @@
     </div>
     
     <!-- 模态窗口容器 -->
-    <div id="modals-container">
-        <!-- 模态窗口通过JS动态生成 -->
-    </div>
+    <div id="modals-container"></div>
     
     <!-- 通知 -->
     <div class="notification" id="notification"></div>
 
-    <!-- 脚本文件 -->
+    <!-- 脚本文件 - 注意加载顺序 -->
     <script src="js/utils.js"></script>
-    <script src="js/api.js"></script>
     <script src="js/worldbook.js"></script>
     <script src="js/chat.js"></script>
     <script src="js/moments.js"></script>
     <script src="js/profile.js"></script>
     <script src="js/couples-space.js"></script>
-    <script src="js/settings.js"></script>
     <script src="js/themes.js"></script>
+    <script src="js/settings.js"></script>
+    <!-- 主应用最后加载 -->
     <script src="js/app.js"></script>
+    <!-- 调试脚本（可选） -->
+    <!-- <script src="js/debug.js"></script> -->
+    
+    <script>
+        // 页面完全加载后显示
+        window.addEventListener('load', function() {
+            const screen = document.getElementById('phone-screen');
+            if (screen) {
+                screen.classList.add('loaded');
+            }
+            
+            // 如果5秒后还没有初始化完成，显示错误
+            setTimeout(() => {
+                if (!document.querySelector('.app-icon')) {
+                    alert('应用加载失败，请刷新页面');
+                    console.error('应用加载超时');
+                }
+            }, 5000);
+        });
+    </script>
 </body>
 </html>
