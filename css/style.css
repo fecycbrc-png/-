@@ -1,3 +1,4 @@
+/* 基础样式 */
 * {
     margin: 0;
     padding: 0;
@@ -157,25 +158,6 @@ body {
     padding: 0 4px;
 }
 
-/* 应用页面 */
-.app-page {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f5f5f5;
-    padding-top: 25px;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    overflow-y: auto;
-    z-index: 10;
-}
-
-.app-page.active {
-    transform: translateX(0);
-}
-
 .app-header {
     height: 60px;
     background-color: rgba(255, 255, 255, 0.95);
@@ -322,3 +304,75 @@ body {
 }
 
 /* 应用图标颜色配置在theme.css中 */
+
+/* 确保应用页面可见 */
+.app-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f5f5f5;
+    padding-top: 25px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    z-index: 10;
+    display: block !important; /* 确保显示 */
+}
+
+.app-page.active {
+    transform: translateX(0);
+    z-index: 20;
+}
+
+/* 确保应用图标可点击 */
+.app-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 18px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-height: 90px;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.app-icon:active {
+    transform: scale(0.95);
+}
+
+/* 修复可能被其他样式覆盖的问题 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 确保没有其他样式干扰点击 */
+a, button, .app-icon, .back-button, .action-button {
+    touch-action: manipulation;
+}
+
+/* 移动端点击优化 */
+@media (hover: none) and (pointer: coarse) {
+    .app-icon {
+        min-height: 100px;
+    }
+    
+    .app-icon:hover {
+        transform: none;
+    }
+    
+    .app-icon:active {
+        transform: scale(0.95);
+        background-color: rgba(255, 255, 255, 0.95);
+    }
+}
