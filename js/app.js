@@ -16,67 +16,46 @@ const EventManager = {
 
 // 主应用模块
 const App = {
-    config: {
-        apps: [
-            { 
-                id: 'settings', 
-                name: '设置', 
-                icon: 'fas fa-cog',
-                color: '#4a6cf7',
-                order: 1
-            },
-            { 
-                id: 'worldbook', 
-                name: '世界书', 
-                icon: 'fas fa-book-open',
-                color: '#ff6b6b',
-                order: 2
-            },
-            { 
-                id: 'chat', 
-                name: '聊天', 
-                icon: 'fas fa-comments',
-                color: '#5cd85a',
-                order: 3
-            },
-            { 
-                id: 'couples-space', 
-                name: '情侣空间', 
-                icon: 'fas fa-heart',
-                color: '#ff6b6b',
-                order: 4
-            },
-            { 
-                id: 'moments', 
-                name: '朋友圈', 
-                icon: 'fas fa-camera',
-                color: '#4a6cf7',
-                order: 5
-            },
-            { 
-                id: 'profile', 
-                name: '我', 
-                icon: 'fas fa-user',
-                color: '#ffa500',
-                order: 6
-            },
-            { 
-                id: 'wallet', 
-                name: '钱包', 
-                icon: 'fas fa-wallet',
-                color: '#5cd85a',
-                order: 7
-            },
-            { 
-                id: 'themes', 
-                name: '主题美化', 
-                icon: 'fas fa-palette',
-                color: '#8a63ff',
-                order: 8
-            }
-        ],
-        widgetVisible: true
-    },
+config: {
+    apps: [
+        { 
+            id: 'settings', 
+            name: '设置', 
+            icon: 'fas fa-cog',
+            color: '#4a6cf7',
+            order: 1
+        },
+        { 
+            id: 'worldbook', 
+            name: '世界书', 
+            icon: 'fas fa-book-open',
+            color: '#ff6b6b',
+            order: 2
+        },
+        { 
+            id: 'chat', 
+            name: '聊天', 
+            icon: 'fas fa-comments',
+            color: '#5cd85a',
+            order: 3
+        },
+        { 
+            id: 'couples-space', 
+            name: '情侣空间', 
+            icon: 'fas fa-heart',
+            color: '#ff6b6b',
+            order: 4
+        },
+        { 
+            id: 'themes', 
+            name: '主题美化', 
+            icon: 'fas fa-palette',
+            color: '#8a63ff',
+            order: 5
+        }
+    ],  // ← 注意这里只有5个应用了！
+    widgetVisible: true
+},
     
     state: {
         currentPage: 'home',
